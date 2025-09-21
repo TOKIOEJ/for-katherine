@@ -1,80 +1,4 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corazones Cayendo con Degradado</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #FF69B4, #9B59B6, #3498DB);
-            overflow: hidden;
-            margin: 0;
-            height: 100vh;
-        }
-
-        .heart {
-            position: absolute;
-            font-size: 20px;
-            pointer-events: none;
-            opacity: 0;
-            animation: fall linear infinite;
-        }
-
-        .heart::before {
-            content: '♡';
-            background: linear-gradient(to right, #ffffff, #f0f0f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        @keyframes fall {
-            0% {
-                opacity: 0;
-                transform: translateY(-100px) rotate(0deg);
-            }
-            10% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <script>
-        const body = document.body;
-
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            
-            // Posición inicial aleatoria
-            heart.style.left = `${Math.random() * 100}vw`;
-            
-            // Duración de la animación aleatoria
-            const animationDuration = Math.random() * 5 + 5;
-            heart.style.animationDuration = `${animationDuration}s`;
-            
-            // Tamaño aleatorio
-            const heartSize = Math.random() * 15 + 10;
-            heart.style.fontSize = `${heartSize}px`;
-
-            body.appendChild(heart);
-
-            // Elimina el corazón después de que termine la animación
-            setTimeout(() => {
-                heart.remove();
-            }, animationDuration * 1000);
-        }
-
-        // Crea un nuevo corazón cada 300 milisegundos
-        setInterval(createHeart, 300);
-    </script>
-</body>
-</html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
@@ -1841,4 +1765,74 @@ var tl = gsap
   </script>
 
 </body>
+	<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corazón Espacial</title>
+    <style>
+        body {
+            /* Opcional: Estilos para el fondo de la página */
+            background-color: #0d0d1e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .corazon-espacial {
+            width: 150px;
+            height: 135px;
+            position: relative;
+            transform: rotate(-45deg);
+            /* **¡IMPORTANTE! Reemplaza 'URL_DE_TU_IMAGEN_DE_ESPACIO.jpg' por la URL o ruta de tu imagen.** */
+            background-image: url('URL_DE_TU_IMAGEN_DE_ESPACIO.jpg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 0 30px rgba(0, 200, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3) inset;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .corazon-espacial::before,
+        .corazon-espacial::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-image: inherit;
+            background-size: inherit;
+            background-position: inherit;
+            border-radius: 50%;
+            box-shadow: inherit;
+        }
+
+        .corazon-espacial::before {
+            top: -50%;
+            left: 0;
+        }
+
+        .corazon-espacial::after {
+            top: 0;
+            right: -50%;
+        }
+
+        /* Animación de pulso al pasar el ratón */
+        .corazon-espacial:hover {
+            animation: pulsoCorazon 1.5s infinite alternate;
+        }
+
+        @keyframes pulsoCorazon {
+            0% { transform: rotate(-45deg) scale(1); box-shadow: 0 0 30px rgba(0, 200, 255, 0.5); }
+            100% { transform: rotate(-45deg) scale(1.05); box-shadow: 0 0 60px rgba(0, 200, 255, 0.8); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="corazon-espacial"></div>
+</body>
+</html>
 </html>
