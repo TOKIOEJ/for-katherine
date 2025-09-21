@@ -1,4 +1,80 @@
 <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corazones Cayendo con Degradado</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #FF69B4, #9B59B6, #3498DB);
+            overflow: hidden;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            pointer-events: none;
+            opacity: 0;
+            animation: fall linear infinite;
+        }
+
+        .heart::before {
+            content: '♡';
+            background: linear-gradient(to right, #ffffff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const body = document.body;
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Posición inicial aleatoria
+            heart.style.left = `${Math.random() * 100}vw`;
+            
+            // Duración de la animación aleatoria
+            const animationDuration = Math.random() * 5 + 5;
+            heart.style.animationDuration = `${animationDuration}s`;
+            
+            // Tamaño aleatorio
+            const heartSize = Math.random() * 15 + 10;
+            heart.style.fontSize = `${heartSize}px`;
+
+            body.appendChild(heart);
+
+            // Elimina el corazón después de que termine la animación
+            setTimeout(() => {
+                heart.remove();
+            }, animationDuration * 1000);
+        }
+
+        // Crea un nuevo corazón cada 300 milisegundos
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
